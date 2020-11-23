@@ -1,0 +1,71 @@
+<html>
+    <body>
+        <div class="container">
+            <center><h2>DDS - Assignment4</h2></center>
+            <!-- <hr> -->
+        <fieldset>
+            <legend> <b> Operations </b></legend>
+            <!-- Join cluster -->
+            <form action="/joinCluster" method="POST">
+            	<b> Join Cluser </b> 
+            	<input type="text" name="serverport" placeholder="serverport"> 
+            	<input type="text" name="raftport" placeholder="raftport">
+            	<input type="text" name="nodeid" placeholder="nodeid">
+            	<button type="submit" value="join"> Join </button>
+            </form>
+
+            <!-- Leave Cluster -->
+            <form action='leaveCluster' method="POST">
+            	<b> Leave Cluster </b> 
+            	<select name="option" width="300px">
+					{% for o in option_list %}
+    					<option value="{{ o.serverPort }}" SELECTED>{{ o.nodeId }}</option>
+    				{% endfor %}
+    			</select>
+            	<button type="submit" > Leave </button>
+            </form>
+
+            <!-- Set Key -->
+            <form action='/setKey' method="POST">
+            	<b> Set Key </b>
+            	<select name="option" width="300px">
+					{% for o in option_list %}
+    					<option value="{{ o.serverPort }}" SELECTED>{{ o.nodeId }}</option>
+    				{% endfor %}
+    			</select>
+    			<input type="text" name="key" placeholder="key">
+    			<input type="text" name="value" placeholder="value">
+    			<button type="submit"> Set Key </button>
+            </form>
+
+            <!-- Get Key -->
+            <form action='/getKey' method="POST">
+            	<b> Get Key </b>
+            	<select name="option" width="300px">
+					{% for o in option_list %}
+    					<option value="{{ o.serverPort }}" SELECTED>{{ o.nodeId }}</option>
+    				{% endfor %}
+    			</select>
+    			<input type="text" name="key" placeholder="key">
+    			<button type="submit"> Get Key </button>
+            </form>
+
+            <!-- Delete Key -->
+            <form>
+            	<b> Delete Key </b>
+            	<select name="option" width="300px">
+					{% for o in option_list %}
+    					<option value="{{ o.serverPort }}" SELECTED>{{ o.nodeId }}</option>
+    				{% endfor %}
+    			</select>
+    			<input type="text" name="key" placeholder="key">
+    			<button type="submit"> Delete Key </button>
+            </form>
+        </fieldset>
+        <fieldset>
+            <legend> <b> Result : </b> </legend>
+            <input type="text" name="result" value="{{ msg }}" size="60" disabled="true">
+        </fieldset>
+        </div>
+    </body>
+</html>
